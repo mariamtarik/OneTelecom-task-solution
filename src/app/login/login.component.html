@@ -1,0 +1,30 @@
+<!-- app.component.html -->
+<div class="bg-gray-900 text-white p-4 max-w-lg mx-auto mt-28 rounded-lg">
+  <h2 class="text-3xl font-bold mb-6">Login</h2>
+  
+  <div class="mb-4">
+    <label class="block mb-2" for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required email #emailInput="ngModel"
+      class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:border-blue-500 text-black"
+    >
+    <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="text-red-500 mt-1">
+      <div *ngIf="emailInput.errors?.['required']">Email is required.</div>
+      <div *ngIf="emailInput.errors?.['email']">Invalid email format.</div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label class="block mb-2" for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" required minlength="6" #passwordInput="ngModel"
+      class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:border-blue-500 text-black"
+    >
+    <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="text-red-500 mt-1">
+      <div *ngIf="passwordInput.errors?.['required']">Password is required.</div>
+      <div *ngIf="passwordInput.errors?.['minlength']">Password must be at least 6 characters long.</div>
+    </div>
+  </div>
+
+  <button (click)="login()" [disabled]="!emailInput.valid || !passwordInput.valid"
+    class="bg-blue-500 hover:bg-blue-600 text-white cursor-pointer font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+  >Login</button>
+</div>

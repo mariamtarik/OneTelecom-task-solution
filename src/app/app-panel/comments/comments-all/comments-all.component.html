@@ -1,0 +1,54 @@
+<app-shared></app-shared>
+<div class="bg-gray-800 p-6">
+  <div class="flex justify-between">
+    <div>
+      <h2 class="text-3xl text-white font-bold mb-6">All Comments</h2>
+    </div>
+    <div>
+      <button
+        class="bg-[#0dcaf0] hover:bg-[#43d1ed] transition-colors ease-linear rounded-md cursor-pointer px-5 py-2 mx-4 text-white"
+        routerLink="/panel/comments/control"
+      >
+        Add Comment
+      </button>
+    </div>
+  </div>
+
+  <div class="rounded-lg shadow-md overflow-clip">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full bg-gray-900 text-center">
+        <thead>
+          <tr>
+            <th class="py-3 px-4 bg-gray-200 text-gray-700">ID</th>
+            <th class="py-3 px-4 bg-gray-200 text-gray-700">Name</th>
+            <th class="py-3 px-4 bg-gray-200 text-gray-700">Email</th>
+            <th class="py-3 px-4 bg-gray-200 text-gray-700">Body</th>
+            <th class="py-3 px-4 bg-gray-200 text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-white">
+          <tr *ngFor="let comment of comments" class="border-t">
+            <td class="py-4 px-6 text-center">{{ comment.id }}</td>
+            <td class="py-4 px-6">{{ comment.name }}</td>
+            <td class="py-4 px-6">{{ comment.email }}</td>
+            <td class="py-4 px-6">{{ comment.body }}</td>
+            <td class="py-4 px-6 flex justify-center">
+              <button
+                (click)="deletePost(comment.id)"
+                class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Delete
+              </button>
+              <button
+                routerLink="/panel/comments/control/{{ comment.id }}"
+                class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 mx-2 rounded focus:outline-none focus:shadow-outline"
+              >
+                update
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
